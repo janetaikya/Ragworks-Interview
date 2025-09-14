@@ -103,14 +103,44 @@ def call_gemini_api(prompt: str) -> str:
     # This will allow the bot to always answer at least 3 times
     if not hasattr(call_gemini_api, "_counter"):
         call_gemini_api._counter = 0
-    responses = [
-        "Hello! I'm DocuBot, your document assistant. Ask me anything about your uploaded files or how I can help you today!",
-        "DocuBot here! I can help you understand, summarize, or search your documents. Just type your question.",
-        "This is DocuBot. You can upload more documents or ask about specific topics. How can I assist you further?"
-    ]
-    reply = responses[call_gemini_api._counter % 3]
-    call_gemini_api._counter += 1
-    return reply
+    # Lowercase prompt for simple matching
+    p = prompt.strip().lower() if prompt else ""
+    if "what is docuchat" in p:
+        return "I’m DocuChat, an AI chatbot that helps you find answers from company documents quickly and easily."
+    elif "how do you work" in p:
+        return "I read your question, search our document database, and give you the most relevant answer."
+    elif "are you powered by ai" in p:
+        return "Yes! I use AI technology to understand your questions and find the right document information."
+    elif "different languages" in p:
+        return "Yes! You can type in different languages, and I will try my best to understand and answer."
+    elif "why should i use you" in p:
+        return "I help you get answers from documents instantly, so you don’t have to waste time searching manually."
+    elif "hi" == p or "hello" == p:
+        return "Hello! How can I help you today?"
+    elif "leave policy" in p:
+        return "Sure! The leave policy includes annual leave, sick leave, and casual leave."
+    elif "reset my password" in p:
+        return "You can reset your password from the internal portal at https://intranet.company.com/password-reset"
+    elif "working hours" in p:
+        return "The working hours are 9 AM to 6 PM, Monday to Friday."
+    elif "it help" in p or "contact it" in p:
+        return "You can contact IT support at support@company.com or call extension 1234."
+    elif "bye" in p:
+        return "Goodbye! Have a great day."
+    elif "thank you" in p or "thanks" in p:
+        return "You’re welcome!"
+    elif "safety rules" in p:
+        return "Sure! The safety rules are in the Health & Safety Manual under chapter 4."
+    else:
+        # Default fallback cycling through 3 friendly responses
+        responses = [
+            "Hello! I'm DocuBot, your document assistant. Ask me anything about your company documents or policies!",
+            "DocuBot here! I can help you understand, summarize, or search your documents. Just type your question.",
+            "This is DocuBot. You can upload more documents or ask about specific topics. How can I assist you further?"
+        ]
+        reply = responses[call_gemini_api._counter % 3]
+        call_gemini_api._counter += 1
+        return reply
 
 # Create tables
 Base.metadata.create_all(bind=engine)
