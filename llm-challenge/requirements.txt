@@ -1,28 +1,52 @@
-# Backend (FastAPI + DB)
+# Backend (FastAPI + SQLite)
 fastapi==0.110.0
 uvicorn[standard]==0.29.0
 sqlalchemy==2.0.29
-psycopg2-binary==2.9.9   # PostgreSQL driver
 alembic==1.13.1          # DB migrations
-redis==5.0.3             # Redis client
 python-jose[cryptography]==3.3.0  # JWT authentication
 passlib[bcrypt]==1.7.4   # password hashing
 
 # Frontend (Streamlit)
-streamlit==1.34.0
+streamlit>=1.36.0
+streamlit-chat==0.1.1    # Enhanced chat components
+streamlit-option-menu==0.3.6  # Better UI components
 
 # LLM Integration
 openai==1.30.1           # OpenAI API client
-anthropic==0.25.7        # Anthropic Claude API client (if needed)
+anthropic==0.25.7        # Anthropic Claude API client
 
-# RAG (Vector DB + Storage)
+# RAG (Vector DB + Document Processing) - Simplified versions
 qdrant-client==1.8.2
-boto3==1.34.106          # for MinIO / S3 storage
+pypdf2==3.0.1            # PDF processing
+python-docx==1.1.0       # Word document processing
+python-pptx==0.6.23      # PowerPoint processing
+beautifulsoup4==4.12.2   # HTML processing
+markdown==3.5.1          # Markdown processing
 
-# Email Integration (optional bonus feature)
+# Email Integration
 fastapi-mail==1.4.1
+jinja2==3.1.2            # Email templates
+
+# File Storage (Local filesystem instead of MinIO)
+aiofiles==23.2.1
 
 # Other utilities
 pydantic==2.7.0          # data validation
 python-dotenv==1.0.1     # load .env configs
 requests==2.31.0
+python-multipart==0.0.6  # File uploads
+email-validator==2.1.0   # Email validation
+  # embeddings + local RAG
+sentence-transformers==2.7.0
+faiss-cpu==1.8.0 # or faiss-gpu if you have CUDA
+transformers==4.35.0
+torch==2.3.1 # or torch with cuda if you have GPU
+beautifulsoup4
+python-docx
+python-pptx
+PyPDF2
+markdown
+numpy<2
+protobuf<5
+
+st-pages==1.0.1
